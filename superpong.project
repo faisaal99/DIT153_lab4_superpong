@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="superpong" Version="11000" InternalType="Cross Development (GMV)">
+  <VirtualDirectory Name="include">
+    <File Name="typedef.h"/>
+    <File Name="memreg.h"/>
+    <File Name="keyb.h"/>
+    <File Name="graphics.h"/>
+    <File Name="display_driver.h"/>
+    <File Name="delay.h"/>
+  </VirtualDirectory>
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00010001N0005Debug000000000000]]>
@@ -17,9 +25,22 @@
  }]]]>
     </Plugin>
   </Plugins>
+  <Reconciliation>
+    <Regexes/>
+    <Excludepaths/>
+    <Ignorefiles/>
+    <Extensions>
+      <![CDATA[*.cpp;*.c;*.h;*.hpp;*.xrc;*.wxcp;*.fbp]]>
+    </Extensions>
+    <Topleveldir>/Users/faisa/development/md407/workspace_2/superpong</Topleveldir>
+  </Reconciliation>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="keyb.c"/>
+    <File Name="graphics.c"/>
+    <File Name="display_driver.c"/>
+    <File Name="delay.c"/>
     <File Name="startup.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
