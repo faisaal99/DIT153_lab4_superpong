@@ -10,20 +10,20 @@ void startup ( void )
 // =============================================================================
 //                         INCLUDES & PRE-PROCESSOR
 
-#include "typedef.h"
-#include "memreg.h"
-#include "delay.h"
-#include "display_driver.h"
-#include "graphics.h"
-#include "keyb.h"
+//#include "typedef.h"
+//#include "memreg.h"
+//#include "delay.h"
+//#include "display_driver.h"
+//#include "graphics.h"
+//#include "keyb.h"
 
 
 // =============================================================================
 //                                GLOBAL DATA
 
-static gpio_t    *gpiod   = (gpio_t*)   GPIOD;   // GPIOD register
-static gpio_t    *gpioe   = (gpio_t*)   GPIOE;   // GPIOE register
-static systick_t *systick = (systick_t*)SYSTICK; // SysTick register
+//static gpio_t    *gpiod   = (gpio_t*)   GPIOD;   // GPIOD register
+//static gpio_t    *gpioe   = (gpio_t*)   GPIOE;   // GPIOE register
+//static systick_t *systick = (systick_t*)SYSTICK; // SysTick register
 
 
 // =============================================================================
@@ -32,9 +32,9 @@ static systick_t *systick = (systick_t*)SYSTICK; // SysTick register
 void app_init(void)
 {
     // Start clocks for port D and port E.
-    *(ulong*)0x40023830 = 0x18;
+ //   *(ulong*)0x40023830 = 0x18;
     // Starta clocks for SYSCFG
-    *((ulong*)0x40023844) |= 0x4000;
+ //   *((ulong*)0x40023844) |= 0x4000;
 }
 
 
