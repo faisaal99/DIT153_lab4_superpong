@@ -1,30 +1,40 @@
-#include "typedef.h"
-#include "memreg.h"
 #include "keyb.h"
 
-/**
- * @brief Read signals from the keyboard and determine which key is pressed,
- *        if one is pressed. If no key is pressed, return 0xFF.
- */
-u8 keyb(void)
+#include "memreg.h"
+
+
+static Input input =
 {
+    { 0, 0, 0, 0 },
+    0
+};
+
+
+Input *keyb(void)
+{
+    input.n_presses = 0;
+    u8 n_assigns = BUFFER_SIZE;
+
     for (u32 row = 1; row <= 4; row++)
     {
+        // If the maximum number of keypresses have been achieved, then stop
+        // looking for more keys.
+        if (n_assigns == 0) break;
+        
         activate_row(row);
         u32 column = read_column();
+        
         if (column)
-            return key_value(row, column);
+        {
+            input.buffer[BUFFER_SIZE - n_assigns] = key_value(row, column);
+            input.n_presses++;
+        }
     }
-
-    return (u8)0xFF;
+    
+    return &input;
 }
 
 
-/**
- * @brief Activates the specific row on the keyboard.
- *
- * @param row The current row to index. Is 1-indexed. 1 <= row <= 4.
- */
 void activate_row(u32 row)
 {
     gpio_t *gpiod = (gpio_t*)GPIOD;
@@ -49,10 +59,6 @@ void activate_row(u32 row)
 }
 
 
-/**
- * @brief Read each column from the keypad and return the first column that is
- *        enabled.
- */
 int read_column()
 {
     gpio_t *gpiod = (gpio_t*)GPIOD;
@@ -74,12 +80,6 @@ int read_column()
 }
 
 
-/**
- * @brief Get the keyvalue corresponding to the row and column.
- *
- * @param row The row of the key being pressed. 1-indexed.
- * @param col The column of the key being pressed. 1-indexed.
- */
 u8 key_value(u32 row, u32 col)
 {
     row--;
