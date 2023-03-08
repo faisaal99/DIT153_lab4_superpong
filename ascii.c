@@ -15,25 +15,6 @@ volatile gpio_t *gpio_e = (volatile gpio_t*)GPIOE;
 
 
 // =============================================================================
-//                                  SET-UP
-
-/*void app_init(void) // most likely not necessary
-{
-
-    //Set up outputs for GpioE
-	gpio_e->MODER   = 0x55555555;
-    gpio_e->OSPEEDR = 0x55555555;
-
-    // Start clocks for port D and port E.
-    *(volatile ulong*)0x40023830 = 0x18;
-
-    gpio_e->MODER   = 0x55555555;
-    gpio_e->OSPEEDR = 0x55555555;
-}
-*/
-
-
-// =============================================================================
 //                                 FUNCTIONS
 
 extern void delay_250ns(void);
@@ -274,43 +255,3 @@ void ascii_write_char(u8 c)
 {   char* s;
     ascii_data(c, delay_mikro, 43);
 }
-
-
-void Init_Score (void){
-   
-
-}
-
-// =============================================================================
-//                                    MAIN
-/*
-void main(void)
-{
-    // Data used in the application.
-    char *s;
-    const char test1[] = "Faisal ";
-    const char test2[] = "is an idiot";
-
-    // Program set-up.
-    app_init();
-    ascii_init();
-
-    // Move to the 1st row and set the output-pointer to the 1st string.
-    ascii_goto(1, 1);
-    s = test1;
-
-    // Print out each character.
-    while (*s)
-        ascii_write_char(*s++);
-
-    // Move to the 2nd row and set the output-pointer to the 2nd string.
-    ascii_goto(1, 2);
-    s = test2;
-
-    // Again, print out each character.
-    while (*s)
-        ascii_write_char(*s++);
-
-    return 0;
-}
-*/

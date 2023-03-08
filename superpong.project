@@ -18,6 +18,7 @@
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="include">
+    <File Name="ascii_game.h"/>
     <File Name="ascii.h"/>
     <File Name="typedef.h"/>
     <File Name="memreg.h"/>
@@ -38,6 +39,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="ascii_game.c"/>
     <File Name="ascii.c"/>
     <File Name="keyb.c"/>
     <File Name="graphics.c"/>

@@ -3,6 +3,10 @@
 
 #include "typedef.h"
 
+#define NameMaxSize 7
+#define PLAYER_1_ASCII_POS 1
+#define PLAYER_2_ASCII_POS 13
+
 
 /// <summary>
 /// A struct to model a single point in two-dimensional space.
@@ -34,9 +38,9 @@ typedef struct
 } Rect, *P_Rect;
 
 
-/// <summary>
-/// A polypoint is a polygon-shape with linked polygons.
-/// </summary>
+/**
+ * @brief A polypoint is a polygon-shape with linked polygons.
+*/
 typedef struct poly_t
 {
     i8 x, y;
@@ -47,9 +51,9 @@ typedef struct poly_t
 // The maximum number of pixels a Geometry can hold.
 #define MAX_SIZE 32
 
-/// <summary>
-/// Models a geometric shape.
-/// </summary>
+/**
+ * @brief Models a geometric shape.
+*/
 typedef struct
 {
     int   num_points;
@@ -59,9 +63,9 @@ typedef struct
 } Geometry, *P_Geometry;
 
 
-/// <summary>
-/// Models a movable object on the screen.
-/// </summary>
+/**
+ * @brief Models a movable object on the screen.
+*/
 typedef struct Obj_t
 {
     P_Geometry geo;    // The pixel-data of this object.
@@ -81,33 +85,47 @@ typedef struct Obj_t
 } Object, *P_Object;
 
 
-/// <summary>
-/// Draw an object to the screen.
-/// </summary>
-/// <param name="obj">
-/// The object whose pixels will be drawn to the screen.
-/// </param>
+typedef struct
+{
+    bool is_colliding;
+    i8   which;         // Left = 'l', Right = 'r', Up = 'u' and Down = 'd'
+} WallCollision;
+
+
+typedef struct
+{
+    char     name[NameMaxSize]; // Ascii info
+    u8       display_position;  // Ascii info
+    u32      points;
+    P_Object paddle;
+} Player, *P_Player;
+
+
+/**
+ * @brief Draw an object to the screen.
+ * 
+ * @param obj The object whose pixels will be drawn to the screen.
+*/
 void draw_object(P_Object obj);
 
 
-/// <summary>
-/// Clear an object's off the screen.
-/// </summary>
-/// <param name="obj">The object whose pixels to delete.</param>
+/**
+ * @brief Clear an object's off the screen.
+ * 
+ * @param obj The object whose pixels to delete.
+*/
 void clear_object(P_Object obj);
 
 
-/// <summary>
-/// Get the absolute value of a char.
-/// </summary>
-/// <param name="nr"></param>
-/// <returns></returns>
+/**
+ * @brief Get the absolute value of a byte.
+*/
 i8 abs(i8 nr);
 
 
-/// <summary>
-/// Swap the values of two chars.
-/// </summary>
+/**
+ * @brief Swap the values of two chars.
+*/
 void swap(i8 *a, i8 *b);
 
 

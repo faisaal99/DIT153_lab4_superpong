@@ -46,7 +46,7 @@ u8 key_value(u32 row, u32 col);
  * @brief Return the value of the key being pressed. This is high-level and 
  *        should be the way of communicating with the keyboard.
 */
-u8 *keyb();
+Input *keyb(void);
 
 
 /**

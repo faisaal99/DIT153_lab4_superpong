@@ -28,6 +28,7 @@ Input *keyb(void)
         {
             input.buffer[BUFFER_SIZE - n_assigns] = key_value(row, column);
             input.n_presses++;
+            n_assigns--;
         }
     }
     
@@ -37,7 +38,7 @@ Input *keyb(void)
 
 void activate_row(u32 row)
 {
-    gpio_t *gpiod = (gpio_t*)GPIOD;
+    volatile gpio_t *gpiod = (gpio_t*)GPIOD;
 
     switch (row)
     {
@@ -61,7 +62,7 @@ void activate_row(u32 row)
 
 int read_column()
 {
-    gpio_t *gpiod = (gpio_t*)GPIOD;
+    volatile gpio_t *gpiod = (gpio_t*)GPIOD;
     u8 c = gpiod->IDR_HIGH;
 
     if ( c & 0b1000 )
