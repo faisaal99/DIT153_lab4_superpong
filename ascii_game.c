@@ -19,8 +19,8 @@
 void ascii_draw_score(P_Player p)
 {
 	
-	ascii_goto(((p->display_position) + 7) , 2);
-	ascii_write_char(((p -> points)+48));
+	ascii_goto(p->display_position + 7 , 2);
+	ascii_write_char(p->points + 48);
 }
 
 

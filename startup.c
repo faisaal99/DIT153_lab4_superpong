@@ -250,6 +250,7 @@ Geometry ball_geometry =
     }
 };
 
+
 static Object ball =
 {
     &ball_geometry,
@@ -260,6 +261,7 @@ static Object ball =
     move_object,
     set_object_speed
 };
+
 
 Geometry paddle_geometry =
 {
@@ -275,6 +277,7 @@ Geometry paddle_geometry =
     }
 };
 
+
 static Object right_paddle =
 {
     &paddle_geometry,
@@ -285,6 +288,7 @@ static Object right_paddle =
     move_object,
     set_object_speed
 };
+
 
 static Object left_paddle =
 {
@@ -297,13 +301,15 @@ static Object left_paddle =
     set_object_speed
 };
 
+
 static Player player_1 =
 {
-    "Player 1 ",             // Name
+    "Player 1 ",            // Name
     PLAYER_1_ASCII_POS,
     0,                      // Points
     &left_paddle            // Paddle
 };
+
 
 static Player player_2 =
 {

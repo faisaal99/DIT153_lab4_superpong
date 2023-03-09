@@ -3,7 +3,7 @@
 
 #include "typedef.h"
 
-#define NameMaxSize 7
+#define NameMaxSize 16
 #define PLAYER_1_ASCII_POS 1
 #define PLAYER_2_ASCII_POS 13
 

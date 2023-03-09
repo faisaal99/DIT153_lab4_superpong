@@ -9,10 +9,14 @@ static Input input =
     0
 };
 
+static u8 col_buffer[] = { 0, 0, 0, 0 };
+static u8 col_count    = 0;
 
 Input *keyb(void)
 {
     input.n_presses = 0;
+    col_count = 0;
+
     u8 n_assigns = BUFFER_SIZE;
 
     for (u32 row = 1; row <= 4; row++)
@@ -22,11 +26,16 @@ Input *keyb(void)
         if (n_assigns == 0) break;
         
         activate_row(row);
-        u32 column = read_column();
+        buffered_read_column();
         
-        if (column)
+        //col_count = 0;
+        for (u8 col_i = 0; col_i < col_count; col_i++)
         {
-            input.buffer[BUFFER_SIZE - n_assigns] = key_value(row, column);
+            input.buffer[BUFFER_SIZE - n_assigns] = key_value(
+                row,
+                col_buffer[col_i]
+            );
+            
             input.n_presses++;
             n_assigns--;
         }
@@ -59,25 +68,22 @@ void activate_row(u32 row)
     }
 }
 
-
-int read_column()
+void buffered_read_column(void)
 {
     volatile gpio_t *gpiod = (gpio_t*)GPIOD;
     u8 c = gpiod->IDR_HIGH;
 
     if ( c & 0b1000 )
-        return 4;
+        col_buffer[col_count++] = 4;
 
     if ( c & 0b0100 )
-        return 3;
+        col_buffer[col_count++] = 3;
 
     if ( c & 0b0010 )
-        return 2;
+        col_buffer[col_count++] = 2;
 
     if ( c & 0b0001 )
-        return 1;
-
-    return 0;
+        col_buffer[col_count++] = 1;
 }
 
 
